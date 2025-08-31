@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PigeonPass Visitor Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🕊️ Welcome to PigeonPass</h1>
+    <p class="subtitle">Register your visit and let the pigeons carry your name!</p>
+  </header>
+
+  <main>
+    <form id="visitorForm">
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company">
+      </div>
+
+      <div class="form-group">
+        <label for="purpose">Purpose of Visit</label>
+        <input type="text" id="purpose" name="purpose">
+      </div>
+
+      <button type="submit">Send with Pigeon 🕊️</button>
+    </form>
+
+    <p id="result"></p>
+  </main>
+
+  <footer>
+    <p>🐦 Powered by the cloud, carried by pigeons.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
