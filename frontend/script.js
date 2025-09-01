@@ -1,45 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("visitorForm");
-  const result = document.getElementById("result");
+const API_URL = "https://pigeonpass-backend-762376077749.europe-north1.run.app/api/register";
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("visitor-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // Gather form data
-    const data = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      company: document.getElementById("company").value.trim(),
-      purpose: document.getElementById("purpose").value.trim()
-    };
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    company: document.getElementById("company").value,
+    purpose: document.getElementById("purpose").value,
+  };
 
-    // Simple client-side validation
-    if (!data.name || !data.email) {
-      result.textContent = "⚠️ Please fill in required fields.";
-      result.style.color = "red";
-      return;
-    }
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-    try {
-      const response = await fetch("http://localhost:5215/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        const resJson = await response.json();
-        result.textContent = "✅ " + resJson.message;
-        result.style.color = "green";
-        form.reset();
-      } else {
-        result.textContent = "❌ Something went wrong!";
-        result.style.color = "red";
-      }
-    } catch (err) {
-      console.error(err);
-      result.textContent = "❌ Could not reach server.";
-      result.style.color = "red";
-    }
-  });
+    const result = await res.json();
+    document.getElementById("message").innerText = result.message || "Error occurred!";
+  } catch (err) {
+    document.getElementById("message").innerText = "Network error!";
+  }
 });
+

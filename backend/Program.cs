@@ -4,7 +4,21 @@ using Microsoft.Extensions.Hosting;
 using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors();
 
 string? connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 
