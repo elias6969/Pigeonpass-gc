@@ -99,7 +99,7 @@ dotnet run
 ```
 
 The API runs at:
-`http://localhost:5173//register`
+`http://localhost:5173/register`
 
 ### 3. Backend – Deploy to Google Cloud Run
 
@@ -139,7 +139,9 @@ For production, deploy frontend via **GitHub Pages**
 1. Open the web form in a browser.
 2. Enter **Name**, **Email**, optional **Company** and **Purpose**.
 3. Submit -> backend returns confirmation message:
-   `Welcome <Name>, your visit has been registered.`
+```json
+{ "message": "Welcome <Username>, your visit has been registered." }
+```
 4. Verify data in the database:
 
 ```sql
@@ -158,3 +160,4 @@ Example output:
 
 ## License
 This project is released under the MIT License
+
